@@ -2,40 +2,87 @@
 const prompt = require("prompt-sync")({ sigint: true });
 
 
-let userInputArray = [2.2, '4', 5, 0, "+", "+", "*"];
+let userInputArray = [];
 let stack = [];
 let userInput;
 let isMultipleDecimal;
+let howManyNumbers = 0;
+let howManyOperations = 0;
+let isContinue = true;
 // const regex = /^[0-9.]+$/;
+
+// --------- getting first number------------------
 do {
     userInput = prompt("Enter a number: ");
-    //split the user input into an array to count how many times they inputed '.'
+    //split the user input into an array to count how many times they inputted '.'
     let userCharArray = userInput.split('');
     let counter = 0;
     isMultipleDecimal = false;
-    for(let i = 0; i < userCharArray.length; i++)
-    {
-        if(userCharArray[i] == '.')
-        {
+    for (let i = 0; i < userCharArray.length; i++) {
+        if (userCharArray[i] == '.') {
             counter++;
         }
-        if(counter > 1)
-        {
+        if (counter > 1) {
             isMultipleDecimal = true;
         }
         // console.log(isMultipleDecimal);
         // console.log(counter);
     }
-
+    
     // if the user's input isn't a number, has multiple decimal or is '.'
-} while (isNaN(parseFloat(userInput)) || isMultipleDecimal == true ||userInput.length == 1 && userInput.includes('.') );
+} while (isNaN(parseFloat(userInput)) || isMultipleDecimal == true || userInput.length == 1 && userInput.includes('.'));
+
+userInputArray.push(parseFloat(userInput));
+
+// --------- getting second number------------------
+
+do {
+    userInput = prompt("Enter a number: ");
+    //split the user input into an array to count how many times they inputted '.'
+    let userCharArray = userInput.split('');
+    let counter = 0;
+    isMultipleDecimal = false;
+    for (let i = 0; i < userCharArray.length; i++) {
+        if (userCharArray[i] == '.') {
+            counter++;
+        }
+        if (counter > 1) {
+            isMultipleDecimal = true;
+        }
+        // console.log(isMultipleDecimal);
+        // console.log(counter);
+    }
+    
+    // if the user's input isn't a number, has multiple decimal or is '.'
+} while (isNaN(parseFloat(userInput)) || isMultipleDecimal == true || userInput.length == 1 && userInput.includes('.'));
 
 userInputArray.push(parseFloat(userInput));
 
 
+// --------- getting another number or operator------------------
 
+do{
 
-// pop method removes the last element from an array and returns that element. This method changes the length of the array.
+    
+    do {
+        userInput = prompt("Enter in another number or operator: ")
+        userInputArray.push(userInput);
+        console.log(userInputArray);
+        howManyNumbers = userInputArray.filter(idx => !isNaN(idx)).length;
+        console.log(howManyNumbers);
+        howManyOperations = userInputArray.filter(idx => isNaN(idx)).length;
+        console.log(howManyOperations);
+    } while (howManyNumbers - 1 != howManyOperations)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // pop method removes the last element from an array and returns that element. This method changes the length of the array.
     
     // going to take the user input array and iterate through it
     for (let i = 0; i < userInputArray.length; i++) {
@@ -63,3 +110,13 @@ userInputArray.push(parseFloat(userInput));
     }
     
     console.log(`your answer is ${stack[0]}`);
+    userInput = prompt('Type "q" to end, "c" to continue, "r" to restart : ' );
+    if(userInput.toLowerCase() == 'c'){
+        isContinue == true;
+        userInputArray = [stack[0]];
+        stack = [];
+    }else{
+        isContinue = false;
+    }
+    
+}while(isContinue)
