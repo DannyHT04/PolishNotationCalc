@@ -4,6 +4,35 @@ const prompt = require("prompt-sync")({ sigint: true });
 
 let userInputArray = [2.2, '4', 5, 0, "+", "+", "*"];
 let stack = [];
+let userInput;
+let isMultipleDecimal;
+// const regex = /^[0-9.]+$/;
+do {
+    userInput = prompt("Enter a number: ");
+    //split the user input into an array to count how many times they inputed '.'
+    let userCharArray = userInput.split('');
+    let counter = 0;
+    isMultipleDecimal = false;
+    for(let i = 0; i < userCharArray.length; i++)
+    {
+        if(userCharArray[i] == '.')
+        {
+            counter++;
+        }
+        if(counter > 1)
+        {
+            isMultipleDecimal = true;
+        }
+        // console.log(isMultipleDecimal);
+        // console.log(counter);
+    }
+
+    // if the user's input isn't a number, has multiple decimal or is '.'
+} while (isNaN(parseFloat(userInput)) || isMultipleDecimal == true ||userInput.length == 1 && userInput.includes('.') );
+
+userInputArray.push(parseFloat(userInput));
+
+
 
 
 // pop method removes the last element from an array and returns that element. This method changes the length of the array.
