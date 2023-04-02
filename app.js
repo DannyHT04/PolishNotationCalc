@@ -9,6 +9,8 @@ let isMultipleDecimal;
 let howManyNumbers = 0;
 let howManyOperations = 0;
 let isContinue = true;
+let playAgain = true;
+let isValid = false;
 // const regex = /^[0-9.]+$/;
 
 // --------- getting first number------------------
@@ -28,7 +30,7 @@ do {
         // console.log(isMultipleDecimal);
         // console.log(counter);
     }
-    
+
     // if the user's input isn't a number, has multiple decimal or is '.'
 } while (isNaN(parseFloat(userInput)) || isMultipleDecimal == true || userInput.length == 1 && userInput.includes('.'));
 
@@ -52,7 +54,7 @@ do {
         // console.log(isMultipleDecimal);
         // console.log(counter);
     }
-    
+
     // if the user's input isn't a number, has multiple decimal or is '.'
 } while (isNaN(parseFloat(userInput)) || isMultipleDecimal == true || userInput.length == 1 && userInput.includes('.'));
 
@@ -61,9 +63,9 @@ userInputArray.push(parseFloat(userInput));
 
 // --------- getting another number or operator------------------
 
-do{
+do {
 
-    
+
     do {
         userInput = prompt("Enter in another number or operator: ")
         userInputArray.push(userInput);
@@ -73,17 +75,17 @@ do{
         howManyOperations = userInputArray.filter(idx => isNaN(idx)).length;
         console.log(howManyOperations);
     } while (howManyNumbers - 1 != howManyOperations)
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
     // pop method removes the last element from an array and returns that element. This method changes the length of the array.
-    
+
     // going to take the user input array and iterate through it
     for (let i = 0; i < userInputArray.length; i++) {
         // if the index of the userInputArray is not a number, we are going to push it into our new array
@@ -108,15 +110,29 @@ do{
         }
         console.log(stack);
     }
-    
+
     console.log(`your answer is ${stack[0]}`);
-    userInput = prompt('Type "q" to end, "c" to continue, "r" to restart : ' );
-    if(userInput.toLowerCase() == 'c'){
-        isContinue == true;
-        userInputArray = [stack[0]];
-        stack = [];
-    }else{
-        isContinue = false;
-    }
-    
-}while(isContinue)
+
+    // handling the restart, quit or continue section 
+    do {
+
+        userInput = prompt('Type "q" to end, "c" to continue, "r" to restart : ').toLowerCase();
+        if (userInput == 'c') {
+            isContinue = true;
+            isValid = true;
+            userInputArray = [stack[0]];
+            stack = [];
+        } else if (userInput == 'r' || userInput == 'q') {
+            isContinue = false;
+            isValid = true;
+            userInputArray = [];
+            stack = [];
+        } else {
+            console.log('Please enter in a valid input.')
+            isValid = false;
+        }
+    }while(!isValid)
+
+} while (isContinue)
+
+// while (playAgain)
