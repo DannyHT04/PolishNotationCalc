@@ -13,6 +13,8 @@ let playAgain = true;
 let isValid = false;
 // const regex = /^[0-9.]+$/;
 
+while (playAgain)
+{
 // --------- getting first number------------------
 do {
     userInput = prompt("Enter a number: ");
@@ -114,6 +116,7 @@ do {
     console.log(`your answer is ${stack[0]}`);
 
     // handling the restart, quit or continue section 
+    
     do {
 
         userInput = prompt('Type "q" to end, "c" to continue, "r" to restart : ').toLowerCase();
@@ -135,4 +138,8 @@ do {
 
 } while (isContinue)
 
-// while (playAgain)
+    if(userInput == 'q')
+    {
+        playAgain = false;
+    }
+}
