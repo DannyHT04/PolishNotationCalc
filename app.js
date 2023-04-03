@@ -41,12 +41,13 @@ while (playAgain) {
     } while (isNaN(parseFloat(userInput)) || isMultipleDecimal == true);
 
     userInputArray.push(parseFloat(userInput));
-    console.log(`your current numbers and operators are ${userInputArray}`)
+    console.log(`your current numbers and operators are ${userInputArray}`);
+    console.log('---------------------------------------');
     // --------- getting second number------------------
-
+    
     do {
         userInput = prompt("Enter the second number: ");
-     
+        
         //split the user input into an array to count how many times they inputted '.'
         let userCharArray = userInput.split('');
         let counter = 0;
@@ -64,10 +65,11 @@ while (playAgain) {
         
         // if the user's input isn't a number, has multiple decimal or is '.'
     } while (isNaN(parseFloat(userInput)) || isMultipleDecimal == true);
-
+    
     userInputArray.push(parseFloat(userInput));
     console.log(`your current numbers and operators are ${userInputArray}`)
-
+    console.log('---------------------------------------');
+    
     // --------- getting another number or operator------------------
 
     do {
@@ -106,7 +108,8 @@ while (playAgain) {
                     isValidInput = true;
                 }else if (!regexWithOperators.test(userInput) && userInput.length != 1 || isMultipleDecimal == true || userInput == '.' || isMultipleOperations == true || parseFloat(userInput)  ) {
                     isValidInput = false;
-                    console.log("Please enter in a valid number or operator")
+                    console.log("Please enter in a valid number or operator");
+                    console.log('---------------------------------------');
                 } else {
                     isValidInput = true;
                 }
@@ -123,7 +126,8 @@ while (playAgain) {
             // console.log(howManyNumbers);
             howManyOperations = userInputArray.filter(idx => isNaN(idx)).length;
             // console.log(howManyOperations);
-            console.log(`you need ${(howManyNumbers -1) - howManyOperations} more operators to start the equation`)
+            console.log(`you need ${(howManyNumbers -1) - howManyOperations} more operators to start the equation`);
+            console.log('---------------------------------------');
         } while (howManyNumbers - 1 != howManyOperations)
 
 
@@ -173,11 +177,14 @@ while (playAgain) {
                 isValid = true;
                 userInputArray = [stack[0]];
                 stack = [];
+                console.clear();
+                console.log(`your current numbers and operators are ${userInputArray}`);
             } else if (userInput == 'r' || userInput == 'q') {
                 isContinue = false;
                 isValid = true;
                 userInputArray = [];
                 stack = [];
+                console.clear();
             } else {
                 console.log('Please enter in a valid input.')
                 isValid = false;
@@ -189,4 +196,6 @@ while (playAgain) {
     if (userInput == 'q') {
         playAgain = false;
     }
+  
+    
 }
