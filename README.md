@@ -8,4 +8,4 @@
 
 ## Description
 Since I decided to go with JavaScript, I need to import a node module to get the user's input. 
-`const prompt = require("prompt-sync")({ sigint: true });` This code allows us to get user's input and allows the quit option (ctrl + c)
+``const prompt = require("prompt-sync")({ sigint: true });`` This code allows us to get user's input and allows the quit option (ctrl + c)
