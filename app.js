@@ -7,7 +7,7 @@ let stack = [];
 let userInput;
 let howManyNumbers = 0;
 let howManyOperations = 0;
-let isMultipleDecimal =false;
+let isMultipleDecimal = false;
 let isMultipleOperations = false;
 let isContinue = true;
 let playAgain = true;
@@ -35,7 +35,7 @@ while (playAgain) {
             // console.log(counter);
         }
 
-      
+
 
         // if the user's input isn't a number, has multiple decimal or is '.'
     } while (isNaN(parseFloat(userInput)) || isMultipleDecimal == true);
@@ -44,35 +44,35 @@ while (playAgain) {
     console.log(`your current numbers and operators are ${userInputArray}`);
     console.log('---------------------------------------');
     // --------- getting second number------------------
-    
     do {
-        userInput = prompt("Enter the second number: ");
-        
-        //split the user input into an array to count how many times they inputted '.'
-        let userCharArray = userInput.split('');
-        let counter = 0;
-        isMultipleDecimal = false;
-        for (let i = 0; i < userCharArray.length; i++) {
-            if (userCharArray[i] == '.') {
-                counter++;
-            }
-            if (counter > 1) {
-                isMultipleDecimal = true;
-            }
-            // console.log(isMultipleDecimal);
-            // console.log(counter);
-        }
-        
-        // if the user's input isn't a number, has multiple decimal or is '.'
-    } while (isNaN(parseFloat(userInput)) || isMultipleDecimal == true);
-    
-    userInputArray.push(parseFloat(userInput));
-    console.log(`your current numbers and operators are ${userInputArray}`)
-    console.log('---------------------------------------');
-    
-    // --------- getting another number or operator------------------
 
-    do {
+        do {
+            userInput = prompt("Enter the second number: ");
+
+            //split the user input into an array to count how many times they inputted '.'
+            let userCharArray = userInput.split('');
+            let counter = 0;
+            isMultipleDecimal = false;
+            for (let i = 0; i < userCharArray.length; i++) {
+                if (userCharArray[i] == '.') {
+                    counter++;
+                }
+                if (counter > 1) {
+                    isMultipleDecimal = true;
+                }
+                // console.log(isMultipleDecimal);
+                // console.log(counter);
+            }
+
+            // if the user's input isn't a number, has multiple decimal or is '.'
+        } while (isNaN(parseFloat(userInput)) || isMultipleDecimal == true);
+
+        userInputArray.push(parseFloat(userInput));
+        console.log(`your current numbers and operators are ${userInputArray}`)
+        console.log('---------------------------------------');
+
+        // --------- getting another number or operator------------------
+
 
 
         do {
@@ -85,7 +85,7 @@ while (playAgain) {
                 let operationsCounter = 0;
                 isMultipleDecimal = false;
                 isMultipleOperations = false;
-            
+
                 for (let i = 0; i < userCharArray.length; i++) {
                     if (userCharArray[i] == '.') {
                         counter++;
@@ -93,20 +93,19 @@ while (playAgain) {
                     if (counter > 1) {
                         isMultipleDecimal = true;
                     }
-                    if(regexWithOperators.test(userCharArray[i])){
+                    if (regexWithOperators.test(userCharArray[i])) {
                         operationsCounter++;
                     }
-                    if(operationsCounter > 1){
+                    if (operationsCounter > 1) {
                         isMultipleOperations = true;
                     }
                     // console.log(isMultipleDecimal);
                     // console.log(counter);
                 }
-              
-                if(!isNaN(parseFloat(userInput)))
-                {
+
+                if (!isNaN(parseFloat(userInput))) {
                     isValidInput = true;
-                }else if (!regexWithOperators.test(userInput) && userInput.length != 1 || isMultipleDecimal == true || userInput == '.' || isMultipleOperations == true || parseFloat(userInput)  ) {
+                } else if (!regexWithOperators.test(userInput) && userInput.length != 1 || isMultipleDecimal == true || userInput == '.' || isMultipleOperations == true || parseFloat(userInput)) {
                     isValidInput = false;
                     console.log("Please enter in a valid number or operator");
                     console.log('---------------------------------------');
@@ -114,10 +113,10 @@ while (playAgain) {
                     isValidInput = true;
                 }
             } while (!isValidInput)
-            if(!regexWithOperators.test(userInput)){
+            if (!regexWithOperators.test(userInput)) {
 
                 userInputArray.push(parseFloat(userInput));
-            }else{
+            } else {
 
                 userInputArray.push(userInput);
             }
@@ -126,7 +125,7 @@ while (playAgain) {
             // console.log(howManyNumbers);
             howManyOperations = userInputArray.filter(idx => isNaN(idx)).length;
             // console.log(howManyOperations);
-            console.log(`you need ${(howManyNumbers -1) - howManyOperations} more operators to start the equation`);
+            console.log(`you need ${(howManyNumbers - 1) - howManyOperations} more operators to start the equation`);
             console.log('---------------------------------------');
         } while (howManyNumbers - 1 != howManyOperations)
 
@@ -196,6 +195,6 @@ while (playAgain) {
     if (userInput == 'q') {
         playAgain = false;
     }
-  
-    
+
+
 }
